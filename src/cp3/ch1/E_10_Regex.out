@@ -1,0 +1,29 @@
+https://regex101.com 
+
+Orginal := 
+	a bc de line: a70 and z72 Will b_e replaced,but aa24 and a872 will not 8j8 lol
+Replace all alphabetic words with asterisks: \b[a-zA-Z]+\b := 
+	*** *** *** ***: a70 *** z72 *** b_e ***,*** aa24 *** a872 *** *** 8j8 ***
+Replace all alphanumeric words incl. underscore: \b\w+\b := 
+	*** *** *** ***: *** *** *** *** *** ***,*** *** *** *** *** *** *** ***
+Replace word that starts with lower character followed by 2 digits: \b[a-z]\d{2}\b := 
+	a bc de line: *** and *** Will b_e replaced,but aa24 and a872 will not 8j8 lol
+
+Orginal := 
+	dog f123 fu12 f12 k cat
+Replace all alphabetic words with asterisks: \b[a-zA-Z]+\b := 
+	*** f123 fu12 f12 *** ***
+Replace all alphanumeric words incl. underscore: \b\w+\b := 
+	*** *** *** *** *** ***
+Replace word that starts with lower character followed by 2 digits: \b[a-z]\d{2}\b := 
+	dog f123 fu12 *** k cat
+
+Orginal := 
+	a70 and z72
+Replace all alphabetic words with asterisks: \b[a-zA-Z]+\b := 
+	a70 *** z72
+Replace all alphanumeric words incl. underscore: \b\w+\b := 
+	*** *** ***
+Replace word that starts with lower character followed by 2 digits: \b[a-z]\d{2}\b := 
+	*** and ***
+
