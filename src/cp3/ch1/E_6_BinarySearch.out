@@ -1,0 +1,12 @@
+RAND_MAX = 2147483647
+Size = 1000000
+lower_bound(685622) = 685623 at pos: 228935
+lower_bound(1810067) = 1810067 at pos: 603373
+lower_bound(1343296) = 1343296 at pos: 448110
+lower_bound(1592752) = 1592756 at pos: 530853
+lower_bound(2814954) = 2814956 at pos: 938660
+lower_bound(1754639) = 1754640 at pos: 584856
+lower_bound(1526028) = 1526030 at pos: 508746
+lower_bound(731690) = 731694 at pos: 244265
+lower_bound(625564) = 625564 at pos: 209015
+lower_bound(2870366) = 2870366 at pos: 957222
