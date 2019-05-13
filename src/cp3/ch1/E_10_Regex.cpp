@@ -23,6 +23,12 @@ int main() {
     desc.push_back("Replace word that starts with lower character followed by 2 digits: \\b[a-z]\\d{2}\\b");
     rlist.push_back(prs(regex("\\b[a-z]\\d{2}\\b"), "***"));
 
+    desc.push_back("Replace hexadecimals words: \\b[a-fA-F0-9]+\\b");
+    rlist.push_back(prs(regex("\\b[a-fA-F0-9]+\\b"), "***"));
+
+    desc.push_back("Replace all tokens (just space left): [^\\s]+");
+    rlist.push_back(prs(regex("[^\\s]+"), "***"));
+
     string str;
     while(getline(cin, str)) {
         printf("Orginal := \n\t%s\n", str.c_str());
