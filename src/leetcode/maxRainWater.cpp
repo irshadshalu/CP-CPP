@@ -6,24 +6,23 @@ using namespace std;
 
 class Solution {
 public:
-    int totalWater(vector<int> tower) {
-        int rain = 0, i, j, lmx, rmx;
+    int trap(vector<int>& tower) {
         // 2 pointers
-        int l = 0, r = tower.size() - 1;
-        int lmx = rmx = 0;
+        int rain = 0, l = 0, r = tower.size() - 1;
+        int lmx =  0, rmx = 0;
         while(l < r) {
             if(tower[l] <= tower[r]) {
                 if(tower[l] >= lmx) lmx = tower[l];
                     // above each tower (fill with 0's)
                     rain += lmx - tower[l];
-                i++;
+                l++;
             } else {
                 if(tower[r] >= rmx) rmx = tower[r];
                     rain += rmx - tower[r];
                 r--;
             }
         }
-        return rain;
+        return rain;    
     }
     
     int maxArea(vector<int>& height) {
