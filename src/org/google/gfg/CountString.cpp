@@ -1,3 +1,5 @@
+// https://www.geeksforgeeks.org/count-strings-can-formed-using-b-c-given-constraints/
+
 #include<vector>
 using namespace std;
 
@@ -18,7 +20,7 @@ int recur(int n, int b, int c) {
 }
 
 // O(N): top down dp
-int solve0(int n) {
+int solve(int n) {
     // O(N) states
     for(int b = 0; b <= 1; ++b)
     for(int c = 0; c <= 2; ++c)
@@ -29,8 +31,13 @@ int solve0(int n) {
     return dp[1][2][n];
 }
 
+// bottom up dp
+int solve0(int n) {
+    // TODO
+}
+
 // O(N): factorial method
-int solve(int n) {
+int solve1(int n) {
     vector<long long> fact(n+1);
     fact[0] = fact[1] = 1LL;
     for(int f = 2; f <= n; ++f) fact[f] = f*fact[f-1];
@@ -52,15 +59,15 @@ int solve(int n) {
  * => 1 + 2n + n(n-1)(1/2 + 1 + (n-2)/2)
  * => 1 + 2n + n(n-1)(n+1)/2
  */
-int solve1(int n) {
+int solve2(int n) {
     return 1 + 2*n + n*(n*n-1)/2;
 }
 
 // using a's, atmost 1 b and atmost 2 c
 int main() {
-    printf("%d = %d,%d,%d\n", 1, solve(1), solve1(1), solve0(1));
-    printf("%d = %d,%d,%d\n", 2, solve(2), solve1(2), solve0(2));
-    printf("%d = %d,%d,%d\n", 3, solve(3), solve1(3), solve0(3));
-    printf("%d = %d,%d,%d\n", 4, solve(4), solve1(4), solve0(4));
+    printf("%d = %d,%d,%d\n", 1, solve(1), solve1(1), solve2(1));
+    printf("%d = %d,%d,%d\n", 2, solve(2), solve1(2), solve2(2));
+    printf("%d = %d,%d,%d\n", 3, solve(3), solve1(3), solve2(3));
+    printf("%d = %d,%d,%d\n", 4, solve(4), solve1(4), solve2(4));
     return 0;
 }
