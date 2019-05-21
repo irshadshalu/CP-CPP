@@ -1,0 +1,35 @@
+input = aabbcc
+index = 0 => 
+index = 1 => a(1) 
+index = 2 => a(2) 
+index = 3 => b(1) a(2) 
+index = 4 => b(2) a(2) 
+found at (0, 4)
+index = 5 => c(1) b(2) a(2) 
+found at (0, 5)
+ans = 6
+input = abcccdefghefgh
+index = 0 => 
+index = 1 => a(1) 
+index = 2 => b(1) a(1) 
+index = 3 => c(1) b(1) a(1) 
+index = 4 => c(2) b(1) a(1) 
+index = 5 => c(3) b(1) a(1) 
+found at (0, 5)
+index = 6 => d(1) c(3) b(1) a(1) 
+found at (1, 6)
+index = 7 => e(1) d(1) c(3) b(1) a(0) 
+found at (2, 7)
+index = 8 => f(1) e(1) d(1) c(3) b(0) a(0) 
+found at (5, 8)
+index = 9 => g(1) f(1) e(1) d(1) c(0) b(0) a(0) 
+found at (6, 9)
+index = 10 => h(1) g(1) f(1) e(1) d(0) c(0) b(0) a(0) 
+found at (6, 10)
+index = 11 => h(1) g(1) f(1) e(2) d(0) c(0) b(0) a(0) 
+found at (6, 11)
+index = 12 => h(1) g(1) f(2) e(2) d(0) c(0) b(0) a(0) 
+found at (6, 12)
+index = 13 => h(1) g(2) f(2) e(2) d(0) c(0) b(0) a(0) 
+found at (6, 13)
+ans = 8
