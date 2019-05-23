@@ -33,7 +33,20 @@ int solve(int n) {
 
 // bottom up dp
 int solve0(int n) {
-    // TODO
+    vector<int> bu[2][3];
+    // O(N) states
+    for(int b = 0; b <= 1; ++b)
+    for(int c = 0; c <= 2; ++c) {
+        dp[b][c].assign(n+1, 0);
+        dp[b][c][0] = 1;
+
+        for(int i = 1; i <= n; ++i) {
+            dp[b][c][i] += dp[b][c][i-1];
+            if(b > 0) dp[b][c][i] += dp[b-1][c][i-1];
+            if(c > 0) dp[b][c][i] += dp[b][c-1][i-1];
+        }
+    }
+    return dp[0][2][n];
 }
 
 // O(N): factorial method
@@ -65,9 +78,7 @@ int solve2(int n) {
 
 // using a's, atmost 1 b and atmost 2 c
 int main() {
-    printf("%d = %d,%d,%d\n", 1, solve(1), solve1(1), solve2(1));
-    printf("%d = %d,%d,%d\n", 2, solve(2), solve1(2), solve2(2));
-    printf("%d = %d,%d,%d\n", 3, solve(3), solve1(3), solve2(3));
-    printf("%d = %d,%d,%d\n", 4, solve(4), solve1(4), solve2(4));
+    for(int n = 0; n <= 5; ++n)
+        printf("%d = %d,%d,%d\n", n, solve(n), solve1(n), solve2(n));
     return 0;
 }
