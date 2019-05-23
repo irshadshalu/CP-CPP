@@ -3,20 +3,20 @@
 #include<vector>
 using namespace std;
 
-vector<int> dp[2][3];
+vector<int> memo[2][3];
 
 int recur(int n, int b, int c) {
     if(n < 0 || b < 0 || c < 0)  return 0;
     
-    if(dp[b][c][n] != -1) return dp[b][c][n];
+    if(memo[b][c][n] != -1) return memo[b][c][n];
 
-    if(n == 0) return dp[b][c][n] = 1;
+    if(n == 0) return memo[b][c][n] = 1;
 
     int tot = 0;
     tot += recur(n-1, b, c);
     tot += recur(n-1, b-1, c);
     tot += recur(n-1, b, c-1);
-    return dp[b][c][n] = tot;
+    return memo[b][c][n] = tot;
 }
 
 // O(N): top down dp
@@ -24,16 +24,16 @@ int solve(int n) {
     // O(N) states
     for(int b = 0; b <= 1; ++b)
     for(int c = 0; c <= 2; ++c)
-        dp[b][c].assign(n+1, -1);
+        memo[b][c].assign(n+1, -1);
     
     recur(n, 1, 2);
     
-    return dp[1][2][n];
+    return memo[1][2][n];
 }
 
 // bottom up dp
 int solve0(int n) {
-    vector<int> bu[2][3];
+    vector<int> dp[2][3];
     // O(N) states
     for(int b = 0; b <= 1; ++b)
     for(int c = 0; c <= 2; ++c) {
