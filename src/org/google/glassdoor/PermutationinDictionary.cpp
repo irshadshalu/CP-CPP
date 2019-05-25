@@ -24,15 +24,16 @@ bool exhaust(string &s, unordered_map<char,int> ct) {
 }
 
 /*
- * Dictinoary # words = D
- * Dictionary word avg size = A
- * Pattern size = P
+ * Dictinoary # words = W
+ * Avg size of dictionary word = A
+ * Dictionary total characters = L
+ * Pattern size = N
  * 
- * Complexity = O(P + DA)
+ * Complexity = O(N + W(A)) = O(N + L)
  * Query = O(DA)
  * 
- * If made trie of dictionary
- * Query = reduced O(DA) // as trie will have less characters than D*A
+ * If made trie of dictionary and traverse it
+ * Query = O(N + reduced(L)) // as trie will have less characters than L
  */
 void permuationInDictionary(const vector<string> &dictionary, const string &pat) {
     // better to use vector<char> of size 26 in case of alphabets only string

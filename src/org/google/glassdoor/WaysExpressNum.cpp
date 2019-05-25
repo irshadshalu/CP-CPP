@@ -30,13 +30,12 @@ typedef unsigned long long ull;
  * 5 {5} = 1,1,1,1,1; 1,1,3; 1,3,1; 3,1,1; 5; // 1[4]; 3[2]; 5[0]
  * 6 {8} = 1,1,1,1,1,1; 1,1,1,3; 1,1,3,1; 1,3,1,1; 1,5; 3,1,1,1; 3,3; 5,1 // 1[5]; 3[3]; 5[1]
  * 7 {13}= 1[6]; 3[4]; 5[2]; 7[0]                                          
- * dp[0] = 1
- * dp[1] = dp[0] = 1
+ * dp[1] = 1
  * dp[2] = dp[1] = 1
- * dp[3] = dp[2] + dp[0] = dp[2] + dp[1] = 2
+ * dp[3] = dp[2] + dp[1] = 2
  * dp[4] = dp[3] + dp[1] = dp[3] + dp[2] = 3
  * dp[5] = dp[4] + dp[2] + dp[0] = dp[4] + dp[3] = 5
- * dp[6] = dp[5] + dp[3] + dp[1] = dp[5] + dp[4] = 9
+ * dp[6] = dp[5] + dp[3] + dp[1] = dp[5] + dp[4] = 8
  * dp[n] = dp[n-1] + dp[n-2]                                            // fibonacci!
  * 
  * Note: subtract 1 if don't want to use no itself in case of odd
@@ -54,8 +53,7 @@ int waysOddRep1(int N) {
     vector<int> dp;
     dp.assign(N+1, 0);
     dp[0]=1; // base case 
-    dp[1]=1;
-    for(int i=2; i<=N; ++i) 
+    for(int i=1; i<=N; ++i) 
     for(int use=1; use<=i; use+=2) 
         dp[i] += dp[i-use];
     

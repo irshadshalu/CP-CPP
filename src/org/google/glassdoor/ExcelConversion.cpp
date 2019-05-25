@@ -1,7 +1,7 @@
 #include<string>
 using namespace std;
 
-// 1-A 26-Z 27-AA
+// 1-A 26-Z 27-AA 52-AZ
 void numberToExcel(int inp) {
     string col = "";
     int n = inp;

@@ -2,31 +2,30 @@
 #include<queue>
 using namespace std;
 
+typedef pair<string, int> psi;
+
 void generate(string pat) {
     printf("Input: %s\n", pat.c_str());
 
-    queue<string> qu;
+    queue<psi> qu;
 
-    // improve
-    queue<size_t> start;
-
-    qu.push(pat); start.push(0l);
+    qu.push(psi(pat,0));
     while(!qu.empty()) {
-        string str = qu.front();
-        size_t index = start.front();
+        string str = qu.front().first;
+        int idx = qu.front().second;
 
         // size_t is typedef unsigned long
         // npos is long constant
-        size_t pos = str.find('?', index);
+        size_t pos = str.find('?', idx);
 
         if(pos != string::npos) {
-            str[pos] = '0'; qu.push(str); start.push(pos);
-            str[pos] = '1'; qu.push(str); start.push(pos);
+            str[pos] = '0'; qu.push(psi(str, pos)); 
+            str[pos] = '1'; qu.push(psi(str, pos));
         } else {
             printf("%s\n", str.c_str());
         }
 
-        qu.pop(); start.pop();
+        qu.pop();
     }
 
     printf("\n");
