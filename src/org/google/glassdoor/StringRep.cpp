@@ -9,21 +9,14 @@ using namespace std;
 
 void computeLps(const string &pat, vector<int> &lps) {
     int M = pat.size();
-    lps.resize(M);
-    lps[0] = 0;
-    int ptr = 0, j = 1;
-    while(j < M) {
-        if(pat[ptr] == pat[j]) {
-            lps[j] = ++ptr;
-            ++j;
-        }
-        else {
-            if(ptr != 0) ptr = lps[ptr - 1];
-            else lps[j++] = 0;
-        }
+    lps.resize(M+1); lps[0] = -1;
+    int i = 0, j = -1;
+    while(i < M) {
+        while(j >= 0 && pat[i] != pat[j]) j = lps[j];
+        i++; j++;
+        lps[i] = j;
     }
     printf("LPS for %s : ", pat.c_str());
-    // std=c++11
     for(int x: lps) printf("%d ", x); printf("\n");
 }
 
@@ -32,8 +25,8 @@ void checkRep(const string &pat) {
     vector<int> lps;
     computeLps(pat, lps);
     int N = pat.size();
-    int mxl = lps[N-1];
-    if(N%(N-mxl) == 0) printf("String repeated by %s!\n\n", pat.substr(0, N - mxl).c_str());
+    int mxl = lps[N];
+    if(N % (N - mxl) == 0) printf("String repeated by %s!\n\n", pat.substr(0, N - mxl).c_str());
     else printf("String is not repeated by any substring!\n\n");
 }
 
