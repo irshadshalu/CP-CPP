@@ -6,6 +6,7 @@ typedef vector<int> vi;
 int W;
 vi val, wt;
 
+// first item array to use each item only once
 void solve() {
     int N = wt.size();
     vector<vi> dp;

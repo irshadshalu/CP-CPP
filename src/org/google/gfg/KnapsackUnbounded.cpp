@@ -7,8 +7,6 @@ int W;
 vi val, wt;
 
 // Repetition allowed: 2loops first value to maximize, second each 'item' (a item will be already used in previous value to maximize) 
-// Standard knapsack: 2loops first 'item', second value to maximize (each item will be use exactly once)
-
 // Unbounded can use any no of times
 void solve() {
     int N = wt.size();
