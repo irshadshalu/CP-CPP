@@ -36,4 +36,32 @@ Given stick of length L and N cuts to be made to the stick in range (0 .. L). Th
         dp[i][j] = min { dp[i][l] + dp[l][j] + arr[j] - arr[i] for pos[i][j-1] < l < pos[i+1][j]}
         since dp[i][j] satisfy quadrangle inequality
 
+#### KMP String Matching
+Given a pattern of length M to search in text of length N.
+
+* Preprocessing O(M)
+
+    Let lps[i] be the length of longest prefix suffix for pattern ending at i-1 index, then
+
+        i = 0, j = -1, lps[0] = -1;
+        while(i < M) {
+            while(j >= 0 && pat[i] != pat[j]) j = lps[j];
+            i++, j++;
+            lps[i] = j;
+        } 
+
+* Text Search O(N)
+
+    Basically in lps[i] we have index where to reset in case of mismatch, then
+
+        i = 0, j = -1;
+        while(i < N) {
+            while(j >= 0 && text[i] != pat[j]) j = lps[j];
+            i++, j++;
+            if(j == M) {
+                // pattern found at i-j index
+                j = lps[j];
+            }
+        }
+
 
