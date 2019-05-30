@@ -14,7 +14,7 @@ Can be used for RMQ in static array i.e. frequent queries and rare updation
 
 ## Common Algorithm Routines
 
-#### [Painter's Partition Problem] (https://github.com/zanymarconi/CP-CPP/blob/master/src/org/google/glassdoor/PainterPartition.cpp)
+#### [Painter's Partition Problem](https://github.com/zanymarconi/CP-CPP/blob/master/src/org/google/glassdoor/PainterPartition.cpp)
 Divide an array of N elements in K (<= N) contiguous subarrays such that maximum of the sum of those subarrays is minimum.
 
 * DP Approach O(K * N<sup>2</sup>)
