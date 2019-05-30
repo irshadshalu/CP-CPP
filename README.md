@@ -2,15 +2,20 @@
 
 #### [Segment Tree](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/SegmentTree.cpp)
 Can be used for RMQ (Range Minimum Query) in dynamic array, say, of N elements.
-* Build Routine: O(N) as total nodes in tree 1+2+4+8+...+2<sup>log<sub>2</sub>N</sup> ~ 2N
+* Build Routine: O(N) as total nodes in tree 1+2+4+8+...+2<sup>log<sub>2</sub>N</sup> &asymp; 2N
 * Query: O(log<sub>2</sub>N) as, if required, need to traverse either left or right subtree at each node
 * Update: O(log<sub>2</sub>N)
 
 #### [Sparse Table](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/SparseTable.cpp)
 Can be used for RMQ in static array i.e. frequent queries and rare updation
-* Build Routine: O(N * log<sub>2</sub>N) as total different lengths for segment 1+2+4+..+log<sub>2</sub>N ~ 2*log<sub>2</sub>N for each starting index
-* Query: O(1) as, for query(i, j) just need to compare two segments of length &lfloor;log<sub>2</sub>(j-i+1)&rfloor; one starting at i and another ending at j
+* Build Routine: O(N * log<sub>2</sub>N) as total different lengths for segment 1+2+4+..+log<sub>2</sub>N &asymp; 2*log<sub>2</sub>N for each starting index
+* Query: O(1), for rmq(i, j) just need to compare two segments of length &lfloor;log<sub>2</sub>(j-i+1)&rfloor; one starting at i and another ending at j
 * Update: O(N * log<sub>2</sub>N)
+
+#### [Union Find DS](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/UFDS.cpp)
+To model collection of disjoint sets. Used in Kruskal.
+* Build: O(M * &alpha;(n)) using path compression and union by rank heuristics for M operations where &alpha;(n) is inverse ackerman function grows very slowly, typically <5 for 1M inputs can treat as constant.
+* Query: &asymp; O(1) which set item belong to
 
 ## Common Algorithm Routines
 
@@ -25,7 +30,7 @@ Divide an array of N elements in K (<= N) contiguous subarrays such that maximum
         dp[1][j] = sum[j];
         dp[i][j] = min{ max(dp[i-1][l], sum[j] - sum[l]) for 0 <= l < j } 
 
-* Binary Search O(N * log<sub>2</sub>(sum[N]))
+* Binary Search O(N * log<sub>2</sub>(&sum;<sub>0<=i<N</sub> arr[i]))
 
     The required sum can be binary searched,
         
@@ -78,7 +83,7 @@ Given a pattern of length M to search in text of length N.
             }
         }
 
-#### Max 2D Range Sum
+#### [Max 2D Range Sum](https://github.com/zanymarconi/CP-CPP/blob/master/src/leetcode/max2DRangeSum.cpp)
 Given a M * N matrix positive and negative integers, find the maximum possible sum of elements of a submatrix.
 
 * Extend Kadane O(M * N<sup>2</sup>)
