@@ -52,7 +52,7 @@ Given a pattern of length M to search in text of length N.
 
 * Text Search O(N)
 
-    Basically in lps[i] we have index where to reset in case of mismatch, then
+    Basically in lps[i] has the index where to reset in case of mismatch, then
 
         i = 0, j = -1;
         while(i < N) {
@@ -64,4 +64,20 @@ Given a pattern of length M to search in text of length N.
             }
         }
 
+#### Max 2D Range Sum
+Given a M * N matrix positive and negative integers, find the maximum possible sum of elements of a submatrix.
+
+* Extend Kadane O(M * N<sup>2</sup>)
+
+    Create a cumulative row sum matrix sum[i][j] from input matrix mat[i][j], where sum[i][j] = sum[i][j-1] + mat[i][j] and sum[i][0] = mat[i][0], then,
+
+        for(int c1 = 0; c1 < N; ++c1)
+        for(int c2 = c1; c2 < N; ++c2) {
+            int current = 0;
+            for(int r = 0; r < M; ++r) {
+                current += (c1 == 0)? sum[r][c2]: sum[r][c2] - sum[r][c1-1];
+                ans = max(ans, current);
+                if(current < 0) current = 0;
+            }
+        }
 
