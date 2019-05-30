@@ -6,10 +6,15 @@ Can be used for RMQ (Range Minimum Query) in dynamic array, say, of N elements.
 * Query: O(log<sub>2</sub>N) as, if required, need to traverse either left or right subtree at each node
 * Update: O(log<sub>2</sub>N)
 
+#### [Sparse Table](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/SparseTable.cpp)
+Can be used for RMQ in static array i.e. frequent queries and rare updation
+* Build Routine: O(N * log<sub>2</sub>N) as total different lengths for segment 1+2+4+..+log<sub>2</sub>N ~ 2*log<sub>2</sub>N for each starting index
+* Query: O(1) as, for query(i, j) just need to compare two segments of length &lfloor;log<sub>2</sub>(j-i+1)&rfloor; one starting at i and another ending at j
+* Update: O(N * log<sub>2</sub>N)
 
-## Popular Algorithm Routines
+## Common Algorithm Routines
 
-#### Painter's Partition Problem
+#### [Painter's Partition Problem] (https://github.com/zanymarconi/CP-CPP/blob/master/src/org/google/glassdoor/PainterPartition.cpp)
 Divide an array of N elements in K (<= N) contiguous subarrays such that maximum of the sum of those subarrays is minimum.
 
 * DP Approach O(K * N<sup>2</sup>)
@@ -28,7 +33,7 @@ Divide an array of N elements in K (<= N) contiguous subarrays such that maximum
         high = sum[N];
         find lowest mid with excatly K partitions
 
-#### Cutting Sticks
+#### [Cutting Sticks](https://github.com/zanymarconi/CP-CPP/blob/master/src/org/google/glassdoor/CutRodMarks.cpp)
 Given stick of length L and N cuts to be made to the stick in range (0 .. L). The cost of cut is determined by lenght of stick to cut. Find minimum cost for optimal cutting sequence.
 
 * DP Approach O(N<sup>3</sup>)
@@ -45,7 +50,7 @@ Given stick of length L and N cuts to be made to the stick in range (0 .. L). Th
         dp[i][j] = min { dp[i][l] + dp[l][j] + arr[j] - arr[i] for pos[i][j-1] < l < pos[i+1][j]}
         since dp[i][j] satisfy quadrangle inequality
 
-#### KMP String Matching
+#### [KMP String Matching](https://github.com/zanymarconi/CP-CPP/blob/master/src/org/google/glassdoor/KMPSearch.cpp)
 Given a pattern of length M to search in text of length N.
 
 * Preprocessing O(M)
