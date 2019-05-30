@@ -43,7 +43,7 @@ Given a pattern of length M to search in text of length N.
 
     Let lps[i] be the length of longest prefix suffix for pattern ending at i-1 index, then
 
-        i = 0, j = -1, lps[0] = -1;
+        int i = 0, j = -1; lps[0] = -1;
         while(i < M) {
             while(j >= 0 && pat[i] != pat[j]) j = lps[j];
             i++, j++;
@@ -52,9 +52,9 @@ Given a pattern of length M to search in text of length N.
 
 * Text Search O(N)
 
-    Basically in lps[i] has the index where to reset in case of mismatch, then
+    Basically, lps[i] has the index where to reset in case of mismatch, then
 
-        i = 0, j = -1;
+        int i = 0, j = -1;
         while(i < N) {
             while(j >= 0 && text[i] != pat[j]) j = lps[j];
             i++, j++;
@@ -71,6 +71,7 @@ Given a M * N matrix positive and negative integers, find the maximum possible s
 
     Create a cumulative row sum matrix sum[i][j] from input matrix mat[i][j], where sum[i][j] = sum[i][j-1] + mat[i][j] and sum[i][0] = mat[i][0], then,
 
+        int ans = INT_MIN;
         for(int c1 = 0; c1 < N; ++c1)
         for(int c2 = c1; c2 < N; ++c2) {
             int current = 0;
