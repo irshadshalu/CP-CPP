@@ -1,3 +1,12 @@
+## Custom Data Structures
+
+#### [Segment Tree](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/SegmentTree.cpp)
+Can be used for RMQ (Range Minimum Query) in dynamic array, say, of N elements.
+* Build Routine: O(N) as total nodes in tree 1+2+4+8+...+2<sup>log<sub>2</sub>N</sup> ~ 2N
+* Query: O(log<sub>2</sub>N) as, if required, need to traverse either left or right subtree at each node
+* Update: O(log<sub>2</sub>N)
+
+
 ## Popular Algorithm Routines
 
 #### Painter's Partition Problem
