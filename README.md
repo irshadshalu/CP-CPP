@@ -1,4 +1,4 @@
-## Popular Algo Routines
+## Popular Algorithm Routines
 
 #### Painter's Partition Problem
 Divide an array of N elements in K (<= N) contiguous subarrays such that maximum of the sum of those subarrays is minimum.
@@ -16,7 +16,7 @@ Divide an array of N elements in K (<= N) contiguous subarrays such that maximum
     The required sum can be binary searched,
         
         low = min{ arr[i] }
-        high = cumulative_sum[N];
+        high = sum[N];
         find lowest mid has excatly K partitions
 
 
