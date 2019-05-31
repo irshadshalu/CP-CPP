@@ -17,7 +17,7 @@ To model collection of disjoint sets. Used in Kruskal.
 * Build: O(M * &alpha;(n)) using path compression and union by rank heuristics for M operations where &alpha;(n) is inverse ackerman function grows very slowly, typically <5 for 1M inputs can treat as constant.
 * Query: &asymp; O(1) which set item belong to
 
-## Common Algorithm Routines
+## Pop Algorithm Routines
 
 #### [Painter's Partition Problem](https://github.com/zanymarconi/CP-CPP/blob/master/src/org/google/glassdoor/PainterPartition.cpp)
 Divide an array of N elements in K (<= N) contiguous subarrays such that maximum of the sum of those subarrays is minimum.
@@ -112,3 +112,9 @@ Cut a M * N paper into minimum number of squares, for example 5 * 6 paper can be
         try vertical_cut (i * x) and (i * (j-x))
         try horizontal_cut (x * j) and ((i-x) * j)
         return dp[i][j] = min (vertical_cut, horizontal_cut) 
+
+#### [Longest Increasing Subsequence](https://github.com/zanymarconi/CP-CPP/blob/master/src/leetcode/LIS.cpp)
+Given an array of integers of lenght N find the length of longest increasing subsequence.
+
+* DP + Greedy O(N * log<sub>2</sub>K)
+    Here K is output sensitive length of LIS of input array. The idea is to maintain a vector l for l[i] reperesents smallest last element in length-i LIS. For each element in array binary search is performed in vector l.
