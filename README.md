@@ -118,6 +118,7 @@ Given an array of integers of lenght N find the length of longest increasing sub
 
 * DP + Greedy O(N * log<sub>2</sub>K)
     
-    Here K is output sensitive length of LIS of input array. 
+    Here K is output sensitive length of LIS for input array. 
         
-        The idea is to maintain a vector l for l[i] reperesents smallest last element in length-i LIS. For each element in array binary search is performed in vector l.
+        The idea is to maintain a vector l for l[i] reperesents smallest last element in length-i LIS. 
+        For each element in array binary search is performed in vector l.
