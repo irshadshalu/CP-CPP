@@ -13,11 +13,11 @@ Can be used for RMQ in static array i.e. frequent queries and rare updation
 * Update: O(N * log<sub>2</sub>N)
 
 #### [Union Find DS](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/UFDS.cpp)
-To model collection of disjoint sets. Used in Kruskal.
+To model collection of disjoint sets. One application is in Kruskal MST.
 * Build: O(M * &alpha;(n)) using path compression and union by rank heuristics for M operations where &alpha;(n) is inverse ackerman function grows very slowly, typically <5 for 1M inputs can treat as constant.
 * Query: &asymp; O(1) which set item belong to
 
-## Pop Algorithm Routines
+## Hip Algorithm Routines
 
 #### [Painter's Partition Problem](https://github.com/zanymarconi/CP-CPP/blob/master/src/org/google/glassdoor/PainterPartition.cpp)
 Divide an array of N elements in K (<= N) contiguous subarrays such that maximum of the sum of those subarrays is minimum.
@@ -122,3 +122,57 @@ Given an array of integers of lenght N find the length of longest increasing sub
         
         The idea is to maintain a vector l for l[i] reperesents smallest last element in length-i LIS. 
         For each element in array binary search is performed in vector l.
+
+#### 0-1 Knapsack
+To find the maximum profit using N items such that total weight does not exceed W.
+
+* [Classic Knapsack](https://github.com/zanymarconi/CP-CPP/blob/master/src/org/google/gfg/Knapsack.cpp) O(N * W)
+    
+    Each item can either be selected or not. The weight of each item be in array wt, then
+
+        int knapsack(int W, vi wt) {
+            int N = wt.size();
+            vector<vi> dp(N+1, vi(W+1, 0));
+        
+            for(int i = 1; i <= N; ++i) 
+            for(int j = 0; j <= W; ++j) {
+                if(wt[i-1] > j) dp[i][j] = dp[i-1][j];
+                else dp[i][j] = max(dp[i-1][j], dp[i-1][j - wt[i-1]] + val[i-1]);
+            }
+        
+            return dp[N][W];
+        }
+
+* [Unbounded Knapsack](https://github.com/zanymarconi/CP-CPP/blob/master/src/org/google/gfg/KnapsackUnbounded.cpp) O(W * N)
+
+    Each item can be used any number of time, then
+
+        int knapsack_unbound(int W, vi wt) {
+            int N = wt.size();
+            vi dp(W+1, 0);
+        
+            for(int j = 0; j <= W; ++j)
+            for(int i = 0; i < N; ++i)
+                if(wt[i] <= j)
+                    dp[j] = max(dp[j], dp[j - wt[i]] + val[i]);
+
+            return dp[W];
+        }
+
+* [Constrained Knapsack](https://github.com/zanymarconi/CP-CPP/blob/master/src/org/google/gfg/KnapsackConstrained.cpp) O(N * W * max_rep)
+
+    Here, a count array is given with number of items available for each item type in vector ct, thus,
+
+        int knapsack_constrained(int W, vi wt, vi ct) {
+            vector<vi> dp(N+1, vi(W+1, 0));
+    
+            for(int i = 1; i <= N; ++i)
+            for(int k = 0; k <= ct[i-1]; ++k)
+            for(int j = 0; j <= W; ++j) {
+                int w = k * wt[i-1];
+                if(j >= w) 
+                    dp[i][j] = max(dp[i][j], dp[i-1][j-w] + k * val[i-1]);
+            }
+
+            return dp[N][W];
+        }
