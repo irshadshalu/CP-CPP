@@ -131,8 +131,7 @@ To find the maximum profit using N items such that total weight does not exceed 
     Each item can either be selected or not. The weight of each item be in array wt, then
 
         int knapsack(int W, vi wt) {
-            int N = wt.size();
-            vector<vi> dp(N+1, vi(W+1, 0));
+            int N = wt.size(); vector<vi> dp(N+1, vi(W+1, 0));
         
             for(int i = 1; i <= N; ++i) 
             for(int j = 0; j <= W; ++j) {
@@ -148,8 +147,7 @@ To find the maximum profit using N items such that total weight does not exceed 
     Each item can be used any number of time, then
 
         int knapsack_unbound(int W, vi wt) {
-            int N = wt.size();
-            vi dp(W+1, 0);
+            int N = wt.size(); vi dp(W+1, 0);
         
             for(int j = 0; j <= W; ++j)
             for(int i = 0; i < N; ++i)
@@ -164,7 +162,7 @@ To find the maximum profit using N items such that total weight does not exceed 
     Here, a count array is given with number of items available for each item type in vector ct, thus,
 
         int knapsack_constrained(int W, vi wt, vi ct) {
-            vector<vi> dp(N+1, vi(W+1, 0));
+            int N = wt.size(); vector<vi> dp(N+1, vi(W+1, 0));
     
             for(int i = 1; i <= N; ++i)
             for(int k = 0; k <= ct[i-1]; ++k)
