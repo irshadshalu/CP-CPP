@@ -161,9 +161,8 @@ To find the maximum profit using N items such that total weight does not exceed 
     
             for(int i = 1; i <= N; ++i)
             for(int k = 0; k <= ct[i-1]; ++k)
-            for(int j = 0; j <= W; ++j) {
+            for(int j = 0; j <= W; ++j)
                 if(int w = k * wt[i-1]; j >= w) //c++17 
                     dp[i][j] = max(dp[i][j], dp[i-1][j-w] + k * val[i-1]);
-            }
 
         return dp[N][W]; }
