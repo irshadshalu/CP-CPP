@@ -130,8 +130,7 @@ To find the maximum profit using N items such that total weight does not exceed 
     
     Each item can either be selected or not. The weight of each item be in array wt, then
 
-        int knapsack(int W, vi wt) {
-            int N = wt.size(); vector<vi> dp(N+1, vi(W+1, 0));
+        int knapsack(int W, vi wt) { int N = wt.size(); vector<vi> dp(N+1, vi(W+1, 0));
         
             for(int i = 1; i <= N; ++i) 
             for(int j = 0; j <= W; ++j) {
@@ -139,30 +138,26 @@ To find the maximum profit using N items such that total weight does not exceed 
                 else dp[i][j] = max(dp[i-1][j], dp[i-1][j - wt[i-1]] + val[i-1]);
             }
         
-            return dp[N][W];
-        }
+        return dp[N][W]; }
 
 * [Unbounded Knapsack](https://github.com/zanymarconi/CP-CPP/blob/master/src/org/google/gfg/KnapsackUnbounded.cpp) O(W * N)
 
     Each item can be used any number of time, then
 
-        int knapsack_unbound(int W, vi wt) {
-            int N = wt.size(); vi dp(W+1, 0);
+        int knapsack_unbound(int W, vi wt) { int N = wt.size(); vi dp(W+1, 0);
         
             for(int j = 0; j <= W; ++j)
             for(int i = 0; i < N; ++i)
                 if(wt[i] <= j)
                     dp[j] = max(dp[j], dp[j - wt[i]] + val[i]);
 
-            return dp[W];
-        }
+        return dp[W]; }
 
 * [Constrained Knapsack](https://github.com/zanymarconi/CP-CPP/blob/master/src/org/google/gfg/KnapsackConstrained.cpp) O(N * W * max_rep)
 
     Here, a count array is given with number of items available for each item type in vector ct, thus,
 
-        int knapsack_constrained(int W, vi wt, vi ct) {
-            int N = wt.size(); vector<vi> dp(N+1, vi(W+1, 0));
+        int knapsack_constrained(int W, vi wt, vi ct) { int N = wt.size(); vector<vi> dp(N+1, vi(W+1, 0));
     
             for(int i = 1; i <= N; ++i)
             for(int k = 0; k <= ct[i-1]; ++k)
@@ -172,5 +167,4 @@ To find the maximum profit using N items such that total weight does not exceed 
                     dp[i][j] = max(dp[i][j], dp[i-1][j-w] + k * val[i-1]);
             }
 
-            return dp[N][W];
-        }
+        return dp[N][W]; }
