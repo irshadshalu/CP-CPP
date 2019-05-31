@@ -117,4 +117,7 @@ Cut a M * N paper into minimum number of squares, for example 5 * 6 paper can be
 Given an array of integers of lenght N find the length of longest increasing subsequence.
 
 * DP + Greedy O(N * log<sub>2</sub>K)
-    Here K is output sensitive length of LIS of input array. The idea is to maintain a vector l for l[i] reperesents smallest last element in length-i LIS. For each element in array binary search is performed in vector l.
+    
+    Here K is output sensitive length of LIS of input array. 
+        
+        The idea is to maintain a vector l for l[i] reperesents smallest last element in length-i LIS. For each element in array binary search is performed in vector l.
