@@ -101,3 +101,14 @@ Given a M * N matrix positive and negative integers, find the maximum possible s
             }
         }
 
+#### [Paper Cut](https://github.com/zanymarconi/CP-CPP/blob/master/src/org/google/gfg/PaperCut.cpp)
+Cut a M * N paper into minimum number of squares, for example 5 * 6 paper can be cut optimally in 5 squares of size 2 * 2 (3) and 3 * 3 (2).
+
+* Memoization Approach O(M * N)
+
+    Recursively calculate minimum squares for i * j by following. Note that number of squares is always less than M * N, worst case if M == 1 || N == 1, so the recursive function calls or time complexity is bounded by same.
+        
+        if (i == j) return dp[i][i] = 1
+        try vertical_cut (i * x) and (i * (j-x))
+        try horizontal_cut (x * j) and ((i-x) * j)
+        return dp[i][j] = min (vertical_cut, horizontal_cut) 
