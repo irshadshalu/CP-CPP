@@ -133,10 +133,9 @@ To find the maximum profit using N items such that total weight does not exceed 
         int knapsack(int W, vi wt) { int N = wt.size(); vector<vi> dp(N+1, vi(W+1, 0));
         
             for(int i = 1; i <= N; ++i) 
-            for(int j = 0; j <= W; ++j) {
+            for(int j = 0; j <= W; ++j)
                 if(wt[i-1] > j) dp[i][j] = dp[i-1][j];
                 else dp[i][j] = max(dp[i-1][j], dp[i-1][j - wt[i-1]] + val[i-1]);
-            }
         
         return dp[N][W]; }
 
