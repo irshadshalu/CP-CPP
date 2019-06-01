@@ -97,6 +97,13 @@ int main() {
 }
 
 /*
+
+Time Complexity:
+In worst case, say, for an i-th character takes m suffix jumps in tree. This means there is a palindrome X at depth m 
+in tree of length atleast m. Each of those m palindromes from root to palindrome X will themselves account for atmost 2 
+suffix jumps so it translates to 2 + 2 + 2 + ... (m times) + m = 3m total jumps upto i > m character or &asymp; O(m), 
+from induction N length string will take O(N) time.  
+
 Console Output:
 
 input = abccba 
