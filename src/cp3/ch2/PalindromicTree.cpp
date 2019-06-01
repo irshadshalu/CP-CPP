@@ -20,7 +20,7 @@ class PalindromicTree {
         string str;
 
         void addletter(int pos) {
-            int ptr = current, plen = 0;                        
+            int ptr = current;                        
             int ch = str[pos] - 'a';
 
             while(ptr && str[pos-(tree[ptr]->len)-1] != str[pos])
