@@ -9,7 +9,7 @@ Can be used for RMQ (Range Minimum Query) in dynamic array, say, of N elements.
 #### [Sparse Table](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/SparseTable.cpp)
 Can be used for RMQ in static array i.e. frequent queries and rare updation
 * Build Routine: O(N * log<sub>2</sub>N) as total different lengths for segment 1+2+4+..+log<sub>2</sub>N &asymp; 2*log<sub>2</sub>N for each starting index
-* Query: O(1), for rmq(i, j) just need to compare two segments of length &lfloor;log<sub>2</sub>(j-i+1)&rfloor; one starting at i and another ending at j
+* Query: O(1) as for rmq(i, j) just need to compare two segments of length &lfloor;log<sub>2</sub>(j-i+1)&rfloor; one starting at i and another ending at j
 * Update: O(N * log<sub>2</sub>N)
 
 #### [Union Find DS](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/UFDS.cpp)

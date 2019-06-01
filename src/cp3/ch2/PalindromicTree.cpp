@@ -73,11 +73,16 @@ class PalindromicTree {
 
 void testUtil(string inp) {
     PalindromicTree *pt;
-    pt = new PalindromicTree(inp);
+    pt = new PalindromicTree(inp);      // O(inp.size())
     vector<ii> pals = pt->returnPals();
     printf("input = %s \n total unique palindromes = %lu \n palindromes = ", inp.c_str(), pals.size()); 
-    for(ii sl: pals) printf("%s ", inp.substr(sl.first, sl.second).c_str());
-    printf("\n longest palindrome = %s\n\n",  inp.substr(pals.back().first, pals.back().second).c_str());
+    string longest = "";
+    for(ii sl: pals) {                  // O(inp.size())
+        string s = inp.substr(sl.first, sl.second);
+        printf("%s ", s.c_str());
+        if(s.size() > longest.size()) longest = s;
+    }
+    printf("\n longest palindrome = %s\n\n",  longest.c_str());
     free(pt);
 }
 
@@ -86,6 +91,7 @@ int main() {
     testUtil("abccba");
     testUtil("abaxyay");
     testUtil("aaaaa");
+    testUtil("xyxa");
 
     return 0;
 }
@@ -101,11 +107,16 @@ input = abccba
 input = abaxyay 
  total unique palindromes = 6 
  palindromes = a b aba x y yay 
- longest palindrome = yay
+ longest palindrome = aba
 
 input = aaaaa 
  total unique palindromes = 5 
  palindromes = a aa aaa aaaa aaaaa 
  longest palindrome = aaaaa
+
+input = xyxa 
+ total unique palindromes = 4 
+ palindromes = x y xyx a 
+ longest palindrome = xyx
 
 */
