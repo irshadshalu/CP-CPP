@@ -17,6 +17,14 @@ To model collection of disjoint sets. One application is in Kruskal MST.
 * Build: O(M * &alpha;(n)) using path compression and union by rank heuristics for M operations where &alpha;(n) is inverse ackerman function grows very slowly, typically <5 for 1M inputs can treat as constant.
 * Query: &asymp; O(1) which set item belong to
 
+#### [Palindromic Tree](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/PalindromicTree.cpp)
+Perform various palindrome operations in linear time
+* Maintain two root nodes for odd and even length palindromes.
+* Nodes represent palindromic substring with two pointers i.e. weighted edge to create new palindromic node and suffix link for longest proper palindromic suffix. 
+* The suffix link is used when i-th character in the input string does not form palindrome with current node.
+* A short intutive implementation is available at [PalindromicTree.cpp](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/PalindromicTree.cpp)
+* Time Complexity: O(N) where N is length of input string
+
 ## Hip Algorithm Routines
 
 #### [Painter's Partition Problem](https://github.com/zanymarconi/CP-CPP/blob/master/src/org/google/glassdoor/PainterPartition.cpp)
