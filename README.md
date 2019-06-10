@@ -6,13 +6,13 @@ Can be used for RMQ (Range Minimum Query) in dynamic array, say, of N elements.
 * Query: O(log<sub>2</sub>N) as, if required, need to traverse either left or right subtree at each node
 * Update: O(log<sub>2</sub>N)
 
-#### [Fenwick Tree](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/FenwicTree.cpp)
+#### [Fenwick Tree](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/FenwickTree.cpp)
 Fenwick, or Binary Indexed Tree can be used for RSQ (Range Sum Query) in dynamic array, say, of N elements
 * Build Routine: O(N * log<sub>2</sub>N)
 * Query: O(log<sub>2</sub>N)
 * Update: O(log<sub>2</sub>N)
 
-#### [Fenwick Tree 2D](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/FenwicTree2D.cpp)
+#### [Fenwick Tree 2D](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/FenwickTree2D.cpp)
  Extension of Fenwick tree on 2D case. This code can find the sum on the rectangle and update any arbitrary element. If input matrix has dimension of M * N then,
 * Build Routine: O(M * N * log<sub>2</sub>M * log<sub>2</sub>N)
 * Query: O(log<sub>2</sub>M * log<sub>2</sub>N)
