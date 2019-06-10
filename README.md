@@ -6,6 +6,12 @@ Can be used for RMQ (Range Minimum Query) in dynamic array, say, of N elements.
 * Query: O(log<sub>2</sub>N) as, if required, need to traverse either left or right subtree at each node
 * Update: O(log<sub>2</sub>N)
 
+#### [Fenwick Tree](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/FenwicTree.cpp)
+Fenwick, or Binary Indexed Tree can be used for RSQ (Range Sum Query) in dynamic array, say, of N elements
+* Build Routine: O(N * log<sub>2</sub>N)
+* Query: O(log<sub>2</sub>N)
+* Update: O(log<sub>2</sub>N)
+
 #### [Sparse Table](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/SparseTable.cpp)
 Can be used for RMQ in static array i.e. frequent queries and rare updation
 * Build Routine: O(N * log<sub>2</sub>N) as total different lengths for segment 1+2+4+..+log<sub>2</sub>N &asymp; 2*log<sub>2</sub>N for each starting index
