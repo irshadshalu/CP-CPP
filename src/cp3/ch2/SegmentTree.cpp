@@ -44,17 +44,8 @@ class SegmentTree {
             return p1 + p2;
         }
 
-        void update(int p, int L, int R, int i, int v) {
-            if(i < L || i > R) return;
-            st[p] += v;
-            if(L == R) return;
-            
-            update(left(p), L, (L+R)>>1, i, v);
-            update(right(p), ((L+R)>>1) + 1, R, i, v);
-        }
-
         // lazy propagation
-        void updateRange(int p, int L, int R, int i, int j, int v) {
+        void lazyUpdate(int p, int L, int R, int i, int j, int v) {
             if(i > R || j < L) return;
             
             if(lazy[p] != 0) {
@@ -70,12 +61,13 @@ class SegmentTree {
             }
             if(L == R) return;
 
-            updateRange(left(p), L, (L+R)>>1, i, j, v);
-            updateRange(right(p), ((L+R)>>1)+1, R, i, j, v);
+            lazyUpdate(left(p), L, (L+R)>>1, i, j, v);
+            lazyUpdate(right(p), ((L+R)>>1)+1, R, i, j, v);
             st[p] = st[left(p)] + st[right(p)];
         }
 
     public:
+        // build segment tree: O(N)
         SegmentTree(const vi &arr) {
             A = arr; N = A.size();
             st.assign(4*N, 0);
@@ -83,22 +75,22 @@ class SegmentTree {
             build(1, 0, N-1);
         }
 
-        // return sum from index i to j
+        // return sum from index i to j: O(logN)
         int rsq(int i, int j) {
             return rsq(1, 0, N-1, i, j);
         }
 
-        // add v to index i
+        // add v to index i: O(logN)
         void update(int i, int v) {
-            update(1, 0, N-1, i, v);
+            lazyUpdate(1, 0, N-1, i, i, v);
         }
 
-        // add v to all indices from i to j
+        // add v to all indices from i to j: O(logN)
         void update(int i, int j, int v) {
-            updateRange(1, 0, N-1, i, j, v);
+            lazyUpdate(1, 0, N-1, i, j, v);
         }
 
-        // normalize all elements O(N * logN)
+        // normalize all elements: O(N * logN)
         void printArr() {
             printf("{ ");
             for(int i = 0; i < N; ++i)
