@@ -1,10 +1,11 @@
 ## Custom Data Structures
 
 #### [Segment Tree](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/SegmentTree.cpp)
-Can be used for RMQ (Range Minimum Query) in dynamic array, say, of N elements.
+Can be used for RSQ/RMQ in dynamic array, say, of N elements.
 * Build Routine: O(N) as total nodes in tree 1+2+4+8+...+2<sup>log<sub>2</sub>N</sup> &asymp; 2N
 * Query: O(log<sub>2</sub>N) as, if required, need to traverse either left or right subtree at each node
-* Update: O(log<sub>2</sub>N)
+* Point Update: O(log<sub>2</sub>N)
+* Range Update: O(log<sub>2</sub>N) using lazy propagation
 
 #### [Fenwick Tree](https://github.com/zanymarconi/CP-CPP/blob/master/src/cp3/ch2/FenwickTree.cpp)
 Fenwick, or Binary Indexed Tree can be used for RSQ (Range Sum Query) in dynamic array, say, of N elements
