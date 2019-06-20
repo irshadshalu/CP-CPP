@@ -186,3 +186,16 @@ To find the maximum profit using N items such that total weight does not exceed 
                     dp[i][j] = max(dp[i][j], dp[i-1][j-w] + k * val[i-1]);
 
         return dp[N][W]; }
+
+#### [Encode String](https://github.com/zanymarconi/CP-CPP/blob/master/src/org/google/techdevguide/EncodeString.cpp) O(N^3)
+
+Given a non-empty string, encode the string such that its encoded length is the shortest.
+
+The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times.
+
+    Use DP:
+                             { str[i..j]                  
+     dp[i][j] =  min len of  { dp[i..mid] + dp[mid+1][j]      
+                             { k[str[i..end]] , where str[i..j] is repetition of str[i..end]
+
+

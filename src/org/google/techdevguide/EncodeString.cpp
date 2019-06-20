@@ -2,19 +2,43 @@
 #include<vector>
 using namespace std;
 
-bool isRep(const string &rep, const string &str) {
-    int m = rep.size(), n = str.size();
-    int i = 0, j = 0;
-    while(j < n) {
-        if(rep[i] != str[j]) return false;
-        i++; j++;
-        if(i == m) i = 0;
+// Using KMP Preprocess for each starting index: sub O(N^2)
+// Stores repetition with smallest substring
+void preCompute(const string &pat, vector<vector<string>> &rep) {
+    int N = pat.size();
+    vector<int> lps(N+1);
+    for(int i = 0; i < N; ++i) {
+        string sub = pat.substr(i);
+        lps[0] = -1;
+        int j = 0, k = -1;
+        rep[i][i] = sub.substr(0, 1);
+        while(j < sub.size()) {
+            while(k >= 0 && sub[j] != sub[k]) k = lps[k];
+            j++; k++;
+            lps[j] = k;
+
+            if(j % (j-lps[j]) == 0) 
+                rep[i][i+j-1] = sub.substr(0, j-lps[j]);
+            else
+                rep[i][i+j-1] = sub.substr(0, j);
+        }
     }
-    return true;
+
+    // for(int i = 0; i < N; ++i)
+    // for(int j = i; j < N; ++j) {
+    //     string a = pat.substr(i, j-i+1); string b = rep[i][j];
+    //     printf("%s = %lu[%s]\n", a.c_str(), a.size()/b.size(), b.c_str());
+    // } printf("precompute complete!\n");
 }
 
-string encode(string pat) {
+// DP: O(N^3)
+string encode(const string &pat) {
     int N = pat.size();
+
+    vector<vector<string>> rep;
+    rep.resize(N, vector<string>(N));
+    preCompute(pat, rep);                                                          // alternative: find repeating substring inside 2 loops in O(N)
+
     vector<vector<string>> dp;
     dp.resize(N + 1, vector<string>(N + 1));
 
@@ -30,13 +54,10 @@ string encode(string pat) {
             if((dp[i][k] + dp[k+1][j]).size() < dp[i][j].size())                    // try all points of combining encoded subs
                 dp[i][j] = dp[i][k] + dp[k+1][j];
             
-            for(int k = 0; k < sub.size(); ++k) {                                   // check if sub can be repeated
-                string rep = sub.substr(0, k + 1);
-                if((sub.size() % rep.size() == 0) && isRep(rep, sub)) {
-                    string ss = to_string(sub.size()/rep.size()) + "[" + dp[i][i + k] + "]";   // note!
-                    if(ss.size() < dp[i][j].size())
-                        dp[i][j] = ss;
-                }
+            if(rep[i][j].size() < sub.size()) {                                     // check if sub can be repeated
+                int u = sub.size(), v = rep[i][j].size();
+                string ss = to_string(u/v) + "[" + dp[i][i+v-1] + "]";
+                if(ss.size() < dp[i][j].size()) dp[i][j] = ss;
             }
         }
     }
@@ -45,12 +66,26 @@ string encode(string pat) {
 }
 
 int main() {
+    // freopen("EncodeString.out", "w", stdout);
     vector<string> pat;
-    // c++11
-    pat = {"aaaaa", "a", "ab", "123a", "abcabcabcababababc", "aaabaaab" ,"aabcaabcd", "abbbabbbcabbbabbbc"};
+    pat = {"aaaaa", "a", "ab", "123a", "abcabcabcababababc", "aaaaabaaaaab" ,"aabcaabcd", "abbbabbbcabbbabbbc"};
+    
     for(string p: pat) {
         printf("%s => %s\n", p.c_str(), encode(p).c_str());
-        // int temp; scanf("%d", &temp);
     }
     return 0;
 }
+
+/*
+ * Output: 
+ * 
+ * aaaaa => 5[a]
+ * a => a
+ * ab => ab
+ * 123a => 123a
+ * abcabcabcababababc => 3[abc]4[ab]c
+ * aaaaabaaaaab => 2[5[a]b]
+ * aabcaabcd => 2[aabc]d
+ * abbbabbbcabbbabbbc => 2[2[abbb]c]
+ * 
+ */
