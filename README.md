@@ -199,3 +199,6 @@ The encoding rule is: k[encoded_string], where the encoded_string inside the squ
                              { k[dp[i..end]] , where str[i..j] is repetition of str[i..end]
 
 
+#### [Google Prep](https://1drv.ms/o/s!AoE36xmLjiE0h9V7kYpTjYO8mSdArw)
+* DS & Algorithms
+* System Design
